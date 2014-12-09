@@ -30,11 +30,6 @@
 			<artifactId>simple-odf</artifactId>
 			<version>0.7-incubating</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>1.8.7</version>
-		</dependency>
 	</dependencies>
 
 	<properties>
