@@ -30,6 +30,11 @@
 			<artifactId>simple-odf</artifactId>
 			<version>0.7-incubating</version>
 		</dependency>
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>org.odftoolkit.odfdom.converter.pdf</artifactId>
+			<version>1.0.4</version>
+		</dependency>
 	</dependencies>
 
 	<properties>
