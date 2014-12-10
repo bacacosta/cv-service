@@ -16,10 +16,10 @@ public class PDFGenerator implements ApplicationListener<ContextRefreshedEvent> 
 	@Override
 	public void onApplicationEvent(final ContextRefreshedEvent event) {
 		try {
-			new File("public/").mkdir();
+			new File("static/").mkdir();
 			PdfConverter.getInstance().convert(
 					OdfTextDocument.loadDocument("data/Resume - Rodrigo Costa.odt"),
-					new FileOutputStream("public/Resume - Rodrigo Costa.pdf"),
+					new FileOutputStream("static/Resume - Rodrigo Costa.pdf"),
 					PdfOptions.create()
 			);
 		} catch (Exception e) {
