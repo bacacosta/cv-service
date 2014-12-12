@@ -15,7 +15,7 @@ public class ODFDataSource {
 	private static Map<String, Integer> tableIndex;
 	static {
 		try {
-			table = TextDocument.loadDocument("data/Resume - Rodrigo Costa.odt").getTableList().get(1);
+			table = TextDocument.loadDocument("data/Rodrigo-Costa.odt").getTableList().get(1);
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to read document.");
 		}

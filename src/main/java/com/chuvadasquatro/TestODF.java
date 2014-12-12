@@ -10,7 +10,7 @@ import org.odftoolkit.simple.text.list.ListItem;
 public class TestODF {
 	public static void main(String[] args) {
 		try {
-			TextDocument doc = TextDocument.loadDocument("data/Resume - Rodrigo Costa.odt");
+			TextDocument doc = TextDocument.loadDocument("data/Rodrigo-Costa.odt");
 			Table table = doc.getTableList().get(1);
 			for (int i = 0; i < table.getRowCount(); i++) {
 				if (i % 2 != 0) continue;

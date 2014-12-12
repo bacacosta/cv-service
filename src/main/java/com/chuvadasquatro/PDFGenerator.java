@@ -16,8 +16,8 @@ public class PDFGenerator implements ApplicationListener<ContextRefreshedEvent> 
 	public void onApplicationEvent(final ContextRefreshedEvent event) {
 		try {
 			PdfConverter.getInstance().convert(
-					OdfTextDocument.loadDocument("data/Resume - Rodrigo Costa.odt"),
-					new FileOutputStream("diy/Resume - Rodrigo Costa.pdf"),
+					OdfTextDocument.loadDocument("data/Rodrigo-Costa.odt"),
+					new FileOutputStream("diy/Rodrigo-Costa.pdf"),
 					PdfOptions.create()
 			);
 		} catch (Exception e) {
