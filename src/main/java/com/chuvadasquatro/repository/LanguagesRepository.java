@@ -8,6 +8,6 @@ import com.chuvadasquatro.domain.Languages;
 @Repository
 public class LanguagesRepository {
 	public Languages getLanguages() {
-		return new Languages(ODFDataSource.getData("languages"));
+		return new Languages(ODFDataSource.getData(ODFDataSource.getListIterator("languages")));
 	}
 }

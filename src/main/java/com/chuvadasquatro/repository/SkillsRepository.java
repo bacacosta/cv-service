@@ -8,6 +8,6 @@ import com.chuvadasquatro.domain.Skills;
 @Repository
 public class SkillsRepository {
 	public Skills getSkills() {
-		return new Skills(ODFDataSource.getData("skills"));
+		return new Skills(ODFDataSource.getData(ODFDataSource.getListIterator("skills")));
 	}
 }

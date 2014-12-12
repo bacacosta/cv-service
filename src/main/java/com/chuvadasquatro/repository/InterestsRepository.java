@@ -8,6 +8,6 @@ import com.chuvadasquatro.domain.Interests;
 @Repository
 public class InterestsRepository {
 	public Interests getInterests() {
-		return new Interests(ODFDataSource.getData("interests"));
+		return new Interests(ODFDataSource.getData(ODFDataSource.getListIterator("interests")));
 	}
 }

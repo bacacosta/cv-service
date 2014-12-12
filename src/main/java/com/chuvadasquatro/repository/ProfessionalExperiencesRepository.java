@@ -1,11 +1,13 @@
 package com.chuvadasquatro.repository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
+import org.odftoolkit.simple.text.list.ListItem;
 import org.springframework.stereotype.Repository;
 
+import com.chuvadasquatro.datasource.ODFDataSource;
 import com.chuvadasquatro.domain.Achievements;
 import com.chuvadasquatro.domain.ProfessionalExperiences;
 import com.chuvadasquatro.domain.ProfessionalExperiencesItem;
@@ -14,14 +16,36 @@ import com.chuvadasquatro.domain.Tasks;
 @Repository
 public class ProfessionalExperiencesRepository {
 	public ProfessionalExperiences getProfessionalExperiences() {
-		List<String> details = Arrays.asList("Details 1", "Details 2");
-		Tasks tasks = new Tasks(Arrays.asList("Task 1", "Task 2", "Task 3", "Task 4"));
-		Achievements achievements = new Achievements(Arrays.asList("Achievements 1", "Achievements 2", "Achievements 3", "Achievements 4"));
 		List<ProfessionalExperiencesItem> professionalExperiences = new ArrayList<ProfessionalExperiencesItem>();
-		for (int i = 1; i <= 8; i++) {
-			ProfessionalExperiencesItem professionalExperiencesItem = new ProfessionalExperiencesItem("Experience " + i, details, tasks, achievements);
-			professionalExperiences.add(professionalExperiencesItem);
+		List<String> detailsList;
+		Tasks tasks = null;
+		Achievements achievements = null;
+
+		Iterator<org.odftoolkit.simple.text.list.List> descriptionIterator = ODFDataSource.getListIterator("experiences");
+		while (descriptionIterator.hasNext()) {
+			for (ListItem description : descriptionIterator.next().getItems()) {
+				detailsList = new ArrayList<String>();
+				Iterator<org.odftoolkit.simple.text.list.List> detailsIterator = ODFDataSource.getListIterator(description);
+				while (detailsIterator.hasNext()) {
+					for (ListItem details : detailsIterator.next().getItems()) {
+						if ("Tasks:".equals(details.getTextContent())) {
+							tasks = new Tasks(ODFDataSource.getData(ODFDataSource.getListIterator(details)));
+						} else if ("Achievements:".equals(details.getTextContent())) {
+							achievements = new Achievements(ODFDataSource.getData(ODFDataSource.getListIterator(details)));
+						} else {
+							detailsList.add(details.getTextContent());
+						}
+					}
+				}
+				professionalExperiences.add(new ProfessionalExperiencesItem(
+						description.getTextContent(),
+						detailsList,
+						tasks,
+						achievements
+				));
+			}
 		}
+
 		return new ProfessionalExperiences(professionalExperiences);
 	}
 }

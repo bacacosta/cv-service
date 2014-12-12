@@ -8,6 +8,6 @@ import com.chuvadasquatro.domain.Courses;
 @Repository
 public class CoursesRepository {
 	public Courses getCourses() {
-		return new Courses(ODFDataSource.getData("courses"));
+		return new Courses(ODFDataSource.getData(ODFDataSource.getListIterator("courses")));
 	}
 }

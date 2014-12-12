@@ -30,12 +30,19 @@ public class ODFDataSource {
 		tableIndex.put("experiences", 12);
 	}
 
-	public static List<String> getData(String page) {
+	public static Iterator<org.odftoolkit.simple.text.list.List> getListIterator(String page) {
+		return table.getRowByIndex(tableIndex.get(page)).getCellByIndex(1).getListIterator();
+	}
+
+	public static Iterator<org.odftoolkit.simple.text.list.List> getListIterator(ListItem item) {
+		return item.getListIterator();
+	}
+
+	public static List<String> getData(Iterator<org.odftoolkit.simple.text.list.List> iterator) {
 		List<String> data = new ArrayList<String>();
 
-		Iterator<org.odftoolkit.simple.text.list.List> lists = table.getRowByIndex(tableIndex.get(page)).getCellByIndex(1).getListIterator();
-		while (lists.hasNext()) {
-			for (ListItem item : lists.next().getItems()) {
+		while (iterator.hasNext()) {
+			for (ListItem item : iterator.next().getItems()) {
 				data.add(item.getTextContent());
 			}
 		}

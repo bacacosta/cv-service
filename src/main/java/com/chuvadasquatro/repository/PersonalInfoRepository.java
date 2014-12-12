@@ -8,6 +8,6 @@ import com.chuvadasquatro.domain.PersonalInfo;
 @Repository
 public class PersonalInfoRepository {
 	public PersonalInfo getPersonalInfo() {
-		return new PersonalInfo(ODFDataSource.getData("info"));
+		return new PersonalInfo(ODFDataSource.getData(ODFDataSource.getListIterator("info")));
 	}
 }
