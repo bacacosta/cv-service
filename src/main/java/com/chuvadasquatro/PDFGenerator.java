@@ -18,7 +18,7 @@ public class PDFGenerator implements ApplicationListener<ContextRefreshedEvent> 
 		try {
 			final String path = "src/main/resources/public/";
 			final String filename = "Rodrigo-Costa";
-			new File(path).mkdir();
+			new File(path).mkdirs();
 			PdfConverter.getInstance().convert(
 					OdfTextDocument.loadDocument("data/" + filename + ".odt"),
 					new FileOutputStream(path + filename + ".pdf"),
