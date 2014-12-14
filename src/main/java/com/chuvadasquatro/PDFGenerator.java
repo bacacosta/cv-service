@@ -1,5 +1,6 @@
 package com.chuvadasquatro;
 
+import java.io.File;
 import java.io.FileOutputStream;
 
 import org.odftoolkit.odfdom.converter.pdf.PdfConverter;
@@ -15,9 +16,12 @@ public class PDFGenerator implements ApplicationListener<ContextRefreshedEvent> 
 	@Override
 	public void onApplicationEvent(final ContextRefreshedEvent event) {
 		try {
+			final String path = "src/main/resources/public/";
+			final String filename = "Rodrigo-Costa";
+			new File(path).mkdir();
 			PdfConverter.getInstance().convert(
-					OdfTextDocument.loadDocument("data/Rodrigo-Costa.odt"),
-					new FileOutputStream("diy/Rodrigo-Costa.pdf"),
+					OdfTextDocument.loadDocument("data/" + filename + ".odt"),
+					new FileOutputStream(path + filename + ".pdf"),
 					PdfOptions.create()
 			);
 		} catch (Exception e) {
