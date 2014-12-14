@@ -16,7 +16,6 @@ public class PDFGenerator implements ApplicationListener<ContextRefreshedEvent> 
 	@Override
 	public void onApplicationEvent(final ContextRefreshedEvent event) {
 		try {
-			System.out.println(this.getClass().getResource("").getPath());
 			final String path = "src/main/resources/public/";
 			final String filename = "Rodrigo-Costa";
 			new File(path).mkdirs();
