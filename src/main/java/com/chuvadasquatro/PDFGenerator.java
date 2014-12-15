@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import org.odftoolkit.odfdom.converter.pdf.PdfConverter;
 import org.odftoolkit.odfdom.converter.pdf.PdfOptions;
 import org.odftoolkit.odfdom.doc.OdfTextDocument;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -13,15 +14,16 @@ import org.springframework.stereotype.Component;
 @SuppressWarnings("deprecation")
 @Component
 public class PDFGenerator implements ApplicationListener<ContextRefreshedEvent> {
+	@Autowired
+	private FilesConfig filesConfig;
+
 	@Override
 	public void onApplicationEvent(final ContextRefreshedEvent event) {
 		try {
-			final String path = "src/main/resources/public/";
-			final String filename = "Rodrigo-Costa";
-			new File(path).mkdirs();
+			new File(filesConfig.getTargetPath()).mkdirs();
 			PdfConverter.getInstance().convert(
-					OdfTextDocument.loadDocument("data/" + filename + ".odt"),
-					new FileOutputStream(path + filename + ".pdf"),
+					OdfTextDocument.loadDocument(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt"),
+					new FileOutputStream(filesConfig.getTargetPath() + filesConfig.getFilename() + ".pdf"),
 					PdfOptions.create()
 			);
 		} catch (Exception e) {
