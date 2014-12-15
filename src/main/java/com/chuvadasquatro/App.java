@@ -17,7 +17,7 @@ public class App {
 		ClassLoader cl = ClassLoader.getSystemClassLoader();
 		URL[] urls = ((URLClassLoader) cl).getURLs();
 
-		System.out.println("Classpath: ");
+		System.out.println("Classpath loaded: ");
 		for (URL url : urls) {
 			System.out.println(url.getFile());
 		}
