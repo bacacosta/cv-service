@@ -7,10 +7,10 @@ import org.odftoolkit.simple.table.Table;
 import org.odftoolkit.simple.text.list.List;
 import org.odftoolkit.simple.text.list.ListItem;
 
-public class TestODF {
+public class ODFDataSourceStaticTest {
 	public static void main(String[] args) {
 		try {
-			TextDocument doc = TextDocument.loadDocument("data/Rodrigo-Costa.odt");
+			TextDocument doc = TextDocument.loadDocument("data/source/Rodrigo-Costa.odt");
 			Table table = doc.getTableList().get(1);
 			for (int i = 0; i < table.getRowCount(); i++) {
 				if (i % 2 != 0) continue;
