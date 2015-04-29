@@ -11,9 +11,10 @@ public class ODFDataSourceStaticTest {
 	public static void main(String[] args) {
 		try {
 			TextDocument doc = TextDocument.loadDocument("data/source/Rodrigo-Costa.odt");
-			Table table = doc.getTableList().get(1);
+			Table table = doc.getTableByName("Data");
 			for (int i = 0; i < table.getRowCount(); i++) {
 				if (i % 2 != 0) continue;
+				System.out.println("* " + table.getRowByIndex(i).getCellByIndex(0).getDisplayText() + ":");
 				Iterator<List> listsLevel1 = table.getRowByIndex(i).getCellByIndex(1).getListIterator();
 				while (listsLevel1.hasNext()) {
 					for (ListItem itemLevel1 : listsLevel1.next().getItems()) {
@@ -22,12 +23,6 @@ public class ODFDataSourceStaticTest {
 						while (listsLevel2.hasNext()) {
 							for (ListItem itemLevel2 : listsLevel2.next().getItems()) {
 								System.out.println("\t" + itemLevel2.getTextContent());
-								Iterator<List> listsLevel3 = itemLevel2.getListIterator();
-								while (listsLevel3.hasNext()) {
-									for (ListItem itemLevel3 : listsLevel3.next().getItems()) {
-										System.out.println("\t\t" + itemLevel3.getTextContent());
-									}
-								}
 							}
 						}
 					}

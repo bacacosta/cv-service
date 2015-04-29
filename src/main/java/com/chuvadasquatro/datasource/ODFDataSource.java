@@ -23,22 +23,21 @@ public class ODFDataSource {
 
 	private static Table table;
 	private static Map<String, Integer> tableIndex;
-	static {
-		tableIndex = new HashMap<String, Integer>();
-		tableIndex.put("info",         0);
-		tableIndex.put("education",    2);
-		tableIndex.put("courses",      4);
-		tableIndex.put("languages",    6);
-		tableIndex.put("skills",       8);
-		tableIndex.put("interests",   10);
-		tableIndex.put("experiences", 12);
-	}
 
 	@PostConstruct
 	public void loadTable() {
 		try {
 			if (table == null) {
-				table = TextDocument.loadDocument(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt").getTableList().get(1);
+				table = TextDocument.loadDocument(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt").getTableByName("Data");
+				tableIndex = new HashMap<String, Integer>();
+				String title;
+				String[] splitTitle;
+				for (int i = 0; i < table.getRowCount(); i++) {
+					if (!(title = table.getRowByIndex(i).getCellByIndex(0).getDisplayText()).isEmpty()) {
+						splitTitle = title.split(" ");
+						tableIndex.put(splitTitle[splitTitle.length - 1].toLowerCase(), i);
+					}
+				}
 			}
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to read document.", e);
