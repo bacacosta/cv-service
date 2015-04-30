@@ -3,17 +3,17 @@ package com.chuvadasquatro.domain;
 import java.util.List;
 
 public class Data {
-	private List<String> data;
+	private List<Object> data;
 
-	public Data(List<String> data) {
+	public Data(List<Object> data) {
 		this.data = data;
 	}
 
-	public List<String> getData() {
+	public List<Object> getData() {
 		return data;
 	}
 
-	public void setData(List<String> data) {
+	public void setData(List<Object> data) {
 		this.data = data;
 	}
 }

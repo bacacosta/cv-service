@@ -19,13 +19,15 @@ public class DataRepository {
 		return new Data(getList(dataSource.getListIterator(page)));
 	}
 
-	private List<String> getList(Iterator<org.odftoolkit.simple.text.list.List> iterator) {
-		List<String> list = new ArrayList<String>();
+	private List<Object> getList(Iterator<org.odftoolkit.simple.text.list.List> iterator) {
+		List<Object> list = new ArrayList<Object>();
 
 		while (iterator.hasNext()) {
 			for (org.odftoolkit.simple.text.list.ListItem item : iterator.next().getItems()) {
 				list.add(item.getTextContent());
-				list.addAll(getList(item.getListIterator()));
+				if (item.getListIterator().hasNext()) {
+					list.add(getList(item.getListIterator()));
+				}
 			}
 		}
 
