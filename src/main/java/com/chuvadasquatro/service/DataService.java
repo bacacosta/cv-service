@@ -11,6 +11,10 @@ public class DataService {
 	@Autowired
 	private DataRepository dataRepository;
 
+	public Data getPages() {
+		return dataRepository.getPages();
+	}
+
 	public Data getData(String page) {
 		return dataRepository.getData(page);
 	}

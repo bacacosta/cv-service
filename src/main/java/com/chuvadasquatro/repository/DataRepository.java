@@ -15,6 +15,10 @@ public class DataRepository {
 	@Autowired
 	private ODFDataSource dataSource;
 
+	public Data getPages() {
+		return new Data(new ArrayList<Object>(ODFDataSource.getTableIndex().keySet()));
+	}
+
 	public Data getData(String page) {
 		return new Data(getList(dataSource.getListIterator(page)));
 	}

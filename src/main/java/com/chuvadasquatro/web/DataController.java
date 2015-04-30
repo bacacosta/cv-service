@@ -13,6 +13,11 @@ public class DataController {
 	@Autowired
 	private DataService dataService;
 
+	@RequestMapping("/pages")
+	public Data getPages() {
+		return dataService.getPages();
+	}
+
 	@RequestMapping("/{page}")
 	public Data getData(@PathVariable String page) {
 		return dataService.getData(page);
