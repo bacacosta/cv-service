@@ -54,8 +54,8 @@ public class DataRepository {
 		OutputStream stream = new BufferedOutputStream(
 				new FileOutputStream(
 						new File(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt")
-						)
-				);
+				)
+		);
 
 		stream.write(bytes);
 		stream.close();
