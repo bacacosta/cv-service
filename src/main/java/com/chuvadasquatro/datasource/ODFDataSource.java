@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
 import org.odftoolkit.odfdom.converter.pdf.PdfConverter;
 import org.odftoolkit.odfdom.converter.pdf.PdfOptions;
 import org.odftoolkit.odfdom.doc.OdfTextDocument;
@@ -26,13 +28,17 @@ public class ODFDataSource {
 	private static Table table;
 	private static Map<String, Integer> tableIndex;
 
+	@PostConstruct
 	public void loadTable() throws Exception {
-		table = TextDocument.loadDocument(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt").getTableByName("Data");
-		tableIndex = new LinkedHashMap<String, Integer>();
-		String title;
-		for (int i = 0; i < table.getRowCount(); i++) {
-			if (!(title = table.getRowByIndex(i).getCellByIndex(0).getDisplayText()).isEmpty()) {
-				tableIndex.put(title.replace(" ", "-").toLowerCase(), i);
+		File source = new File(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt");
+		if (source.exists()) {
+			table = TextDocument.loadDocument(source).getTableByName("Data");
+			tableIndex = new LinkedHashMap<String, Integer>();
+			String title;
+			for (int i = 0; i < table.getRowCount(); i++) {
+				if (!(title = table.getRowByIndex(i).getCellByIndex(0).getDisplayText()).isEmpty()) {
+					tableIndex.put(title.replace(" ", "-").toLowerCase(), i);
+				}
 			}
 		}
 	}
