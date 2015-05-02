@@ -3,7 +3,6 @@ package com.chuvadasquatro.repository;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -47,7 +46,10 @@ public class DataRepository {
 		return list;
 	}
 
-	public Boolean saveData(MultipartFile data) throws IOException {
+	public Boolean saveData(MultipartFile data) throws Exception {
+		// create source directory
+		new File(filesConfig.getSourcePath()).mkdirs();
+
 		byte[] bytes = data.getBytes();
 		OutputStream stream = new BufferedOutputStream(
 				new FileOutputStream(
@@ -57,6 +59,10 @@ public class DataRepository {
 
 		stream.write(bytes);
 		stream.close();
+
+		// reload data and generate PDF
+		dataSource.loadTable();
+		dataSource.generatePDF();
 
 		return true;
 	}

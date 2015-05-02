@@ -1,7 +1,5 @@
 package com.chuvadasquatro.web;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,18 +16,18 @@ public class DataController {
 	@Autowired
 	private DataService dataService;
 
-	@RequestMapping("/pages")
+	@RequestMapping("/rest/pages")
 	public Data getPages() {
 		return dataService.getPages();
 	}
 
-	@RequestMapping("/{page}")
+	@RequestMapping("/rest/{page}")
 	public Data getData(@PathVariable String page) {
 		return dataService.getData(page);
 	}
 
 	@RequestMapping(value="/upload", method=RequestMethod.POST)
-	public Boolean uploadData(@RequestParam("data") MultipartFile data) throws IOException {
+	public Boolean uploadData(@RequestParam("data") MultipartFile data) throws Exception {
 		if (data.isEmpty()) {
 			throw new RuntimeException("Data is empty.");
 		}
