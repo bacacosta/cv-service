@@ -17,7 +17,7 @@ import org.odftoolkit.simple.text.list.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.chuvadasquatro.FilesConfig;
+import com.chuvadasquatro.config.FilesConfig;
 
 @SuppressWarnings("deprecation")
 @Component

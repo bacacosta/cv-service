@@ -1,4 +1,4 @@
-package com.chuvadasquatro;
+package com.chuvadasquatro.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

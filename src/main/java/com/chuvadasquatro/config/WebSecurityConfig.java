@@ -1,4 +1,4 @@
-package com.chuvadasquatro;
+package com.chuvadasquatro.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +10,9 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 @Configuration
 @EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	@Autowired
+	private UsersConfig usersConfig;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -18,6 +21,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
+				.permitAll()
+				.and()
+			.logout()
 				.permitAll();
 	}
 
@@ -25,6 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.inMemoryAuthentication()
-				.withUser("user").password("password").roles("ADMIN");
+				.withUser(usersConfig.getUsername())
+				.password(usersConfig.getPassword())
+				.roles(usersConfig.getRoles());
 	}
 }
