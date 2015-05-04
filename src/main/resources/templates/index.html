@@ -12,8 +12,8 @@
 
 <body>
 
-<form method="POST" enctype="multipart/form-data" action="/upload">
-	Data: <input type="file" name="data" /><input type="submit" value="Upload" />
+<form name="uploadForm" th:action="@{/upload}" method="POST" enctype="multipart/form-data">
+	<label>Data:</label><input type="file" name="data" /><input type="submit" value="Upload" />
 </form>
 
 <div th:if="${success != null}" th:text="${success == 'true'} ? 'Upload successful!' : 'Something went wrong...'">
