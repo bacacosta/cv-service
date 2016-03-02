@@ -3,4 +3,4 @@
 # script. The application will work only if it binds to
 # $OPENSHIFT_DIY_IP:8080
 cd $OPENSHIFT_REPO_DIR
-nohup java -Dspring.profiles.active=production -Dspring.config.location=file:${OPENSHIFT_DATA_DIR}users.properties -jar target/*.jar --server.port=${OPENSHIFT_DIY_PORT} --server.address=${OPENSHIFT_DIY_IP} &
+nohup java -Dspring.profiles.active=prod -Dspring.config.location=file:${OPENSHIFT_DATA_DIR}users.properties -jar target/*.jar --server.port=${OPENSHIFT_DIY_PORT} --server.address=${OPENSHIFT_DIY_IP} &
