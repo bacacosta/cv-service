@@ -1,4 +1,4 @@
-package com.chuvadasquatro.repository;
+package com.chuvadasquatro.cv.repository;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -12,14 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.chuvadasquatro.config.FilesConfig;
-import com.chuvadasquatro.datasource.ODFDataSource;
-import com.chuvadasquatro.domain.Data;
+import com.chuvadasquatro.cv.config.FilesConfig;
+import com.chuvadasquatro.cv.datasource.ODFDataSource;
+import com.chuvadasquatro.cv.domain.Data;
 
 @Repository
 public class DataRepository {
+
 	@Autowired
 	private ODFDataSource dataSource;
+
 	@Autowired
 	private FilesConfig filesConfig;
 
@@ -52,10 +54,7 @@ public class DataRepository {
 
 		byte[] bytes = data.getBytes();
 		OutputStream stream = new BufferedOutputStream(
-				new FileOutputStream(
-						new File(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt")
-				)
-		);
+				new FileOutputStream(new File(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt")));
 
 		stream.write(bytes);
 		stream.close();
@@ -66,4 +65,5 @@ public class DataRepository {
 
 		return true;
 	}
+
 }

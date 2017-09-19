@@ -1,4 +1,4 @@
-package com.chuvadasquatro.datasource;
+package com.chuvadasquatro.cv.datasource;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,11 +17,12 @@ import org.odftoolkit.simple.text.list.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.chuvadasquatro.config.FilesConfig;
+import com.chuvadasquatro.cv.config.FilesConfig;
 
 @SuppressWarnings("deprecation")
 @Component
 public class ODFDataSource {
+
 	@Autowired
 	private FilesConfig filesConfig;
 
@@ -58,7 +59,7 @@ public class ODFDataSource {
 		PdfConverter.getInstance().convert(
 				OdfTextDocument.loadDocument(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt"),
 				new FileOutputStream(filesConfig.getTargetPath() + filesConfig.getFilename() + ".pdf"),
-				PdfOptions.create()
-		);
+				PdfOptions.create());
 	}
+
 }

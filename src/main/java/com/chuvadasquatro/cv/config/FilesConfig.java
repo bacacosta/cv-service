@@ -1,11 +1,12 @@
-package com.chuvadasquatro.config;
+package com.chuvadasquatro.cv.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="service.files")
+@ConfigurationProperties(prefix = "service.files")
 public class FilesConfig {
+
 	private String basePath;
 	private String sourcePath;
 	private String targetPath;
@@ -42,4 +43,5 @@ public class FilesConfig {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
+
 }

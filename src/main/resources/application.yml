@@ -1,0 +1,14 @@
+service:
+    users:
+        username: user
+        password: password
+        roles:    ADMIN
+    files:
+        basePath:   ${HOME}/workspace/chuvadasquatro/cv-service/data/
+        sourcePath: ${service.files.basePath}source/
+        targetPath: ${service.files.basePath}target/
+        filename:   Rodrigo-Costa
+
+multipart:
+    maxFileSize:    128KB
+    maxRequestSize: 128KB

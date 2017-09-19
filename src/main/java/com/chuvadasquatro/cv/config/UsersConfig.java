@@ -1,11 +1,12 @@
-package com.chuvadasquatro.config;
+package com.chuvadasquatro.cv.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="service.users")
+@ConfigurationProperties(prefix = "service.users")
 public class UsersConfig {
+
 	private String username;
 	private String password;
 	private String roles;
@@ -33,4 +34,5 @@ public class UsersConfig {
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
+
 }

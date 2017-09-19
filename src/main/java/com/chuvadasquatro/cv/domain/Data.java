@@ -1,8 +1,9 @@
-package com.chuvadasquatro.domain;
+package com.chuvadasquatro.cv.domain;
 
 import java.util.List;
 
 public class Data {
+
 	private List<Object> data;
 
 	public Data(List<Object> data) {
@@ -16,4 +17,5 @@ public class Data {
 	public void setData(List<Object> data) {
 		this.data = data;
 	}
+
 }

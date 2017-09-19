@@ -1,5 +1,5 @@
+/build/
 /.classpath
-/data/
+/.gradle/
 /.project
 /.settings/
-/target/
