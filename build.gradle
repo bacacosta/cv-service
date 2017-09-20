@@ -29,11 +29,11 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web") {
 		exclude module: "spring-boot-starter-tomcat"
 	}
-	compile("org.springframework.boot:spring-boot-starter-jetty")
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 	compile("org.springframework.boot:spring-boot-starter-security")
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile group: 'org.apache.odftoolkit', name: 'simple-odf', version: '0.8.2-incubating'
 	compile group: 'fr.opensagres.xdocreport', name: 'org.odftoolkit.odfdom.converter.pdf', version: '1.0.6'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testCompile("junit:junit")
 }
