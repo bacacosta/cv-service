@@ -19,7 +19,8 @@ war {
 }
 
 repositories {
-	mavenCentral()
+	jcenter()
+	maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 sourceCompatibility = 1.8
