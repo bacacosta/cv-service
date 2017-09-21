@@ -19,16 +19,18 @@ war {
 }
 
 repositories {
-	jcenter()
-	maven { url "http://repo.spring.io/libs-snapshot" }
+	mavenCentral()
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web")
+	compile("org.springframework.boot:spring-boot-starter-web") {
+		exclude module: "spring-boot-starter-tomcat"
+	}
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	providedCompile "javax.servlet:servlet-api:2.5"
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 	compile("org.springframework.boot:spring-boot-starter-security")
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
