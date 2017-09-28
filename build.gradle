@@ -3,7 +3,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
+		classpath('org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE')
 	}
 }
 
@@ -26,14 +26,16 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web") {
-		exclude module: "spring-boot-starter-tomcat"
+	compile('org.springframework.boot:spring-boot-starter-web') {
+		exclude module: 'spring-boot-starter-tomcat'
 	}
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	compile("org.springframework.boot:spring-boot-starter-actuator")
-	compile("org.springframework.boot:spring-boot-starter-security")
-	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-	compile group: 'org.apache.odftoolkit', name: 'simple-odf', version: '0.8.2-incubating'
-	compile group: 'fr.opensagres.xdocreport', name: 'org.odftoolkit.odfdom.converter.pdf', version: '1.0.6'
-	testCompile("junit:junit")
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.apache.odftoolkit:simple-odf:0.8.2-incubating') {
+		exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+	}
+	compile('fr.opensagres.xdocreport:org.odftoolkit.odfdom.converter.pdf:1.0.6')
+	testCompile('junit:junit')
 }
