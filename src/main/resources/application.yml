@@ -1,10 +1,18 @@
+##################################################
+# active profile
+##################################################
+spring.profiles.active: dev
+
+##################################################
+# default settings
+##################################################
 service:
     users:
         username: user
         password: password
         roles:    ADMIN
     files:
-        basePath:   ${HOME}/workspace/chuvadasquatro/cv-service/data/
+        basePath:   /tmp/cv-service/
         sourcePath: ${service.files.basePath}source/
         targetPath: ${service.files.basePath}target/
         filename:   Rodrigo-Costa
@@ -12,3 +20,15 @@ service:
 multipart:
     maxFileSize:    128KB
     maxRequestSize: 128KB
+
+---
+##################################################
+spring.profiles: dev
+##################################################
+service.files.basePath: ${HOME}/workspace/chuvadasquatro/cv-service/data/
+
+---
+##################################################
+spring.profiles: prod
+##################################################
+service.files.basePath: /tmp/cv-service/
