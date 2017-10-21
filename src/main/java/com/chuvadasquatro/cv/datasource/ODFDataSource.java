@@ -1,13 +1,12 @@
 package com.chuvadasquatro.cv.datasource;
 
+import com.chuvadasquatro.cv.config.FilesConfig;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import javax.annotation.PostConstruct;
-
 import org.odftoolkit.odfdom.converter.pdf.PdfConverter;
 import org.odftoolkit.odfdom.converter.pdf.PdfOptions;
 import org.odftoolkit.odfdom.doc.OdfTextDocument;
@@ -16,8 +15,6 @@ import org.odftoolkit.simple.table.Table;
 import org.odftoolkit.simple.text.list.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.chuvadasquatro.cv.config.FilesConfig;
 
 @SuppressWarnings("deprecation")
 @Component
