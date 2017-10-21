@@ -20,7 +20,7 @@ public class SectionService {
 		return sectionRepository.read(section);
 	}
 
-	public Boolean create(MultipartFile file) throws Exception {
+	public Boolean create(MultipartFile file) {
 		return sectionRepository.create(file);
 	}
 

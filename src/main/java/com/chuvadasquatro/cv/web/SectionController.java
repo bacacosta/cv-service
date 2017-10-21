@@ -32,7 +32,7 @@ public class SectionController {
 	}
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public void create(@RequestParam(required = true) MultipartFile file) throws Exception {
+	public void create(@RequestParam(required = true) MultipartFile file) {
 		sectionService.create(file);
 	}
 

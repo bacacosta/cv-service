@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import javax.annotation.PostConstruct;
 import org.odftoolkit.odfdom.converter.pdf.PdfConverter;
 import org.odftoolkit.odfdom.converter.pdf.PdfOptions;
@@ -27,10 +28,17 @@ public class ODFDataSource {
 	private static Map<String, Integer> tableIndex;
 
 	@PostConstruct
-	public void loadTable() throws Exception {
+	public void loadTable() {
 		File source = new File(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt");
 		if (source.exists()) {
-			table = TextDocument.loadDocument(source).getTableByName("Data");
+			try {
+				table = TextDocument.loadDocument(source).getTableByName("Data");
+			} catch (Exception e) {
+				// delete broken file
+				source.delete();
+
+				throw new IllegalStateException("Error reading source file!", e);
+			}
 			tableIndex = new LinkedHashMap<String, Integer>();
 			String title;
 			for (int i = 0; i < table.getRowCount(); i++) {
@@ -42,21 +50,29 @@ public class ODFDataSource {
 	}
 
 	public static Map<String, Integer> getTableIndex() {
-		return tableIndex;
+		return Optional.ofNullable(tableIndex).orElseThrow(() -> new IllegalStateException("ODF table index is null!"));
 	}
 
-	public Iterator<List> getListIterator(String page) {
-		return table.getRowByIndex(tableIndex.get(page)).getCellByIndex(1).getListIterator();
+	public Iterator<List> getListIterator(String section) {
+		try {
+			return table.getRowByIndex(tableIndex.get(section)).getCellByIndex(1).getListIterator();
+		} catch (NullPointerException e) {
+			throw new IllegalArgumentException("Section " + section + " not found!", e);
+		}
 	}
 
-	public void generatePDF() throws Exception {
+	public void generatePDF() {
 		// create target directory
 		new File(filesConfig.getTargetPath()).mkdirs();
 
-		PdfConverter.getInstance().convert(
-				OdfTextDocument.loadDocument(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt"),
-				new FileOutputStream(filesConfig.getTargetPath() + filesConfig.getFilename() + ".pdf"),
-				PdfOptions.create());
+		try {
+			PdfConverter.getInstance().convert(
+					OdfTextDocument.loadDocument(filesConfig.getSourcePath() + filesConfig.getFilename() + ".odt"),
+					new FileOutputStream(filesConfig.getTargetPath() + filesConfig.getFilename() + ".pdf"),
+					PdfOptions.create());
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Error generating PDF!", e);
+		}
 	}
 
 }
