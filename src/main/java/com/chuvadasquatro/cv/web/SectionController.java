@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping(value = SectionController.URL)
+@RequestMapping(SectionController.URL)
 public class SectionController {
 
 	public static final String URL = "/sections";
@@ -31,7 +32,7 @@ public class SectionController {
 	}
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public void create(MultipartFile file) throws Exception {
+	public void create(@RequestParam(required = true) MultipartFile file) throws Exception {
 		sectionService.create(file);
 	}
 
