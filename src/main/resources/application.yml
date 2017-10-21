@@ -7,10 +7,6 @@ spring.profiles.active: dev
 # default settings
 ##################################################
 service:
-    users:
-        username: user
-        password: password
-        roles:    ADMIN
     files:
         basePath:   /tmp/cv-service/
         sourcePath: ${service.files.basePath}source/
