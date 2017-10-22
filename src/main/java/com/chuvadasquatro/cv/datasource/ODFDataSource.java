@@ -71,7 +71,7 @@ public class ODFDataSource {
 					new FileOutputStream(filesConfig.getTargetPath() + filesConfig.getFilename() + ".pdf"),
 					PdfOptions.create());
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Error generating PDF!", e);
+			throw new IllegalStateException("Error generating PDF!", e);
 		}
 	}
 

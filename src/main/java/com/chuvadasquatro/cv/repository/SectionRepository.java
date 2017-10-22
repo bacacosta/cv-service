@@ -59,7 +59,7 @@ public class SectionRepository {
 			stream.write(bytes);
 			stream.close();
 		} catch (IOException e) {
-			throw new IllegalArgumentException("Error uploading file!", e);
+			throw new IllegalStateException("Error uploading file!", e);
 		}
 
 		// reload data and generate PDF
