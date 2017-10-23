@@ -27,4 +27,4 @@ service.files.basePath: ${HOME}/workspace/chuvadasquatro/cv-service/data/
 ##################################################
 spring.profiles: prod
 ##################################################
-service.files.basePath: /tmp/cv-service/
+service.files.basePath: ${SERVICE_HOME}/

@@ -1,10 +1,12 @@
-FROM fabric8/java-jboss-openjdk8-jdk:1.2.3
+FROM openjdk
 
-ENV JAVA_APP_JAR cv-service-0.1.0.jar
-ENV AB_ENABLED off
-ENV AB_JOLOKIA_AUTH_OPENSHIFT true
-ENV JAVA_OPTIONS -Xmx256m -Djava.security.egd=file:///dev/./urandom
+ENV JAR_NAME cv-service-0.1.0.jar
+ENV JAR_BUILD_PATH build/libs
+ENV SERVICE_HOME /home/cv-service
+ENV SPRING_PROFILES_ACTIVE prod
+
+ADD $JAR_BUILD_PATH/$JAR_NAME $SERVICE_HOME/$JAR_NAME
 
 EXPOSE 8080
 
-ADD build/libs/cv-service-0.1.0.jar /deployments/
+ENTRYPOINT exec java -Djava.security.egd=file:/dev/./urandom -jar $SERVICE_HOME/$JAR_NAME
