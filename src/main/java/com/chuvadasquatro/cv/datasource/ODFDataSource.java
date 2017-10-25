@@ -50,7 +50,8 @@ public class ODFDataSource {
 	}
 
 	public static Map<String, Integer> getTableIndex() {
-		return Optional.ofNullable(tableIndex).orElseThrow(() -> new IllegalStateException("ODF table index is null!"));
+		return Optional.ofNullable(tableIndex)
+				.orElseThrow(() -> new IllegalArgumentException("ODF table index is null!"));
 	}
 
 	public Iterator<List> getListIterator(String section) {
