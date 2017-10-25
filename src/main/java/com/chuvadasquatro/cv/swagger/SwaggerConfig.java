@@ -1,4 +1,4 @@
-package com.chuvadasquatro.cv.config;
+package com.chuvadasquatro.cv.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

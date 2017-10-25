@@ -1,7 +1,5 @@
-package com.chuvadasquatro.cv.web;
+package com.chuvadasquatro.cv.section;
 
-import com.chuvadasquatro.cv.domain.Section;
-import com.chuvadasquatro.cv.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

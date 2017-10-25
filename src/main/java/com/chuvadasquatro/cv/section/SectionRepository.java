@@ -1,8 +1,7 @@
-package com.chuvadasquatro.cv.repository;
+package com.chuvadasquatro.cv.section;
 
 import com.chuvadasquatro.cv.config.FilesConfig;
 import com.chuvadasquatro.cv.datasource.ODFDataSource;
-import com.chuvadasquatro.cv.domain.Section;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;

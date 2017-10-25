@@ -1,7 +1,5 @@
-package com.chuvadasquatro.cv.service;
+package com.chuvadasquatro.cv.section;
 
-import com.chuvadasquatro.cv.domain.Section;
-import com.chuvadasquatro.cv.repository.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

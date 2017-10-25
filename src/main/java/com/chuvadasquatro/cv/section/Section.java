@@ -1,4 +1,4 @@
-package com.chuvadasquatro.cv.domain;
+package com.chuvadasquatro.cv.section;
 
 import java.util.List;
 
